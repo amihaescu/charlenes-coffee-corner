@@ -1,38 +1,17 @@
 package com.amihaescu.swissre.model;
 
-public final class Extra {
+import java.util.List;
 
-    private final int menuItem;
-    private final int forProduct;
-    private final Price price;
-    private final String name;
+public final class Extra extends Product {
 
-    public Extra(int menuItem, int forProduct, Price price, String name) {
-        this.menuItem = menuItem;
+    private final List<Integer> forProduct;
+
+    public Extra(int menuItem, List<Integer> forProduct, Price price, String name) {
+        super(menuItem, price, name);
         this.forProduct = forProduct;
-        this.price = price;
-        this.name = name;
     }
 
-    public int getMenuItem() {
-        return menuItem;
-    }
-
-    public int getForProduct() {
+    public List<Integer> getForProduct() {
         return forProduct;
     }
-
-    public Price getPrice() {
-        return price;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String toString() {
-        return menuItem + " - " + name + " - " + price;
-    }
-
 }

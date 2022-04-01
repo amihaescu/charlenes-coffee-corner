@@ -10,10 +10,9 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Comparator;
+import java.util.Collection;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,22 +29,55 @@ public class Main {
         int option;
         Order order = new Order();
         do {
-            order.display();
-            displayMenu();
+            order.display(false);
+            displayMenu(order);
             option = scanner.nextInt();
-            if (!products.containsKey(option)) {
+            if (order.containsItems() && option == 6) {
+                order.display(true);
+                order = new Order();
+                continue;
+            } else if (!products.containsKey(option)) {
                 System.out.println("Invalid option");
+                continue;
+            }
+            if (isEligibleForExtra(option)) {
+                System.out.println(products.get(option));
+                System.out.println("Extras?[Y/N]");
+                var extra = scanner.next().equals("Y");
+                if (extra) {
+                    displayExtras();
+                    var extraOption = scanner.nextInt();
+                    order.addProduct(products.get(option));
+                    order.addProduct(extras.get(extraOption));
+                    continue;
+                }
+                order.addProduct(products.get(option));
                 continue;
             }
             order.addProduct(products.get(option));
         } while (option != -1);
     }
 
-    private static void displayMenu() {
+    private static void displayExtras() {
+        extras.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .map(Map.Entry::getValue).forEach(System.out::println);
+        System.out.println("\nPlease choose item: ");
+    }
+
+    private static boolean isEligibleForExtra(int option) {
+        return Main.extras.values().stream().flatMap(extra -> extra.getForProduct().stream()).collect(Collectors.toSet()).contains(option);
+    }
+
+    private static void displayMenu(Order order) {
         System.out.println("Welcome to Charlene's Coffee Corner\n");
         products.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
                 .map(Map.Entry::getValue).forEach(System.out::println);
+        if (order.containsItems()) {
+            System.out.println("6 - Pay order");
+        }
+
         System.out.println("\nPlease choose item: ");
     }
 

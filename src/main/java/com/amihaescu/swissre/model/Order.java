@@ -16,15 +16,24 @@ public class Order {
         total += product.getPrice().getAmount();
     }
 
-    public void display() {
+    public void display(boolean isFinal) {
         if (!products.isEmpty()) {
-            System.out.println("Current order");
+            if (isFinal) {
+                System.out.println("Final order");
+            } else {
+                System.out.println("Current order");
+            }
+
             products.forEach((product, quantity) ->
                     System.out.println(quantity + " x " + product.getName() + " " + product.getPrice().getAmount() * quantity + " " + product.getPrice().getCurrency()));
             System.out.println("Total: "+ total + "" + products.entrySet().stream().findAny().get().getKey().getPrice().getCurrency());
 
             System.out.println();
         }
+    }
+
+    public boolean containsItems() {
+        return !products.isEmpty();
     }
 
 }

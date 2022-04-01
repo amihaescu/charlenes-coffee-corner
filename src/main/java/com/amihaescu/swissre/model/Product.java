@@ -1,6 +1,6 @@
 package com.amihaescu.swissre.model;
 
-public final class Product {
+public class Product {
 
     private final int menuItem;
     private final Price price;

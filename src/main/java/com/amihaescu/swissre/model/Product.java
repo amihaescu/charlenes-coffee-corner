@@ -6,6 +6,12 @@ public class Product {
     private final Price price;
     private final String name;
 
+    public Product() {
+        this.menuItem = 0;
+        this.price = new Price(1.0f, "CHF");
+        this.name = "Default name";
+    }
+
     public Product(int menuItem, Price price, String name) {
         this.menuItem = menuItem;
         this.price = price;

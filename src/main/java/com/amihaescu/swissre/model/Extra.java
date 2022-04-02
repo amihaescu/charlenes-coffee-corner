@@ -1,5 +1,6 @@
 package com.amihaescu.swissre.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class Extra extends Product {
@@ -9,6 +10,11 @@ public final class Extra extends Product {
     public Extra(int menuItem, List<Integer> forProduct, Price price, String name) {
         super(menuItem, price, name);
         this.forProduct = forProduct;
+    }
+
+    public Extra() {
+        super();
+        this.forProduct = new ArrayList<>();
     }
 
     public List<Integer> getForProduct() {

@@ -14,11 +14,18 @@ Extras:
 
 The application is written using JDK17 and maven
 
-To run application simply run the main function inside `Main.java`
-
 The application loads the menu and extras from file, so it can be extended very easily.
 The files introduce a many-to-many relation between menu items and extras i.e. the extras are available only for a few selected items. 
 
 Unit test coverage is above 80% for all classes apart from `Main.java`
+
+To run application
+```
+ mvn clean package && java -jar target/charlenes-coffee-corner-1.0-SNAPSHOT.jar
+```
+
+This will prompt you with an interactive menu. 
+
+To exit application type -1. 
 
 

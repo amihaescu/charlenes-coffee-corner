@@ -15,7 +15,9 @@ Extras:
 The application is written using JDK17 and maven
 
 The application loads the menu and extras from file, so it can be extended very easily.
-The files introduce a many-to-many relation between menu items and extras i.e. the extras are available only for a few selected items. 
+The files introduce a many-to-many relation between menu items and extras i.e. the extras are available only for a few selected items.
+
+If a customer orders a beverage and a snack, one of the extra's is free.
 
 Unit test coverage is above 80% for all classes apart from `Main.java`
 

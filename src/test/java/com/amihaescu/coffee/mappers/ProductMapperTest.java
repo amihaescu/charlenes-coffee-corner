@@ -10,10 +10,11 @@ public class ProductMapperTest {
 
     @Test
     void should_successfully_map_line_to_extra() {
-        var extras = productMapper.toProduct("11;0.30;CHF;Extra milk");
+        var extras = productMapper.toProduct("11;0.30;CHF;Extra milk;B");
         assertEquals( 0.30f, extras.getPrice().getAmount());
         assertEquals( "CHF", extras.getPrice().getCurrency());
         assertEquals("Extra milk", extras.getName());
+        assertEquals("B", extras.getType());
     }
 
     @Test

@@ -24,14 +24,14 @@ class DisplayHelperTest {
 
     @Test
     void should_display_products_without_pay_option() {
-        var actual = displayHelper.displayMenu(Map.of(1, new Product(1, new Price(1, "CHF"), "Coffee")), new Order());
+        var actual = displayHelper.displayMenu(Map.of(1, new Product(1, new Price(1, "CHF"), "Coffee", "B")), new Order());
         var expected = "Welcome to Charlene's Coffee Corner\n1 - Coffee - 1.0CHF\nPlease choose item:";
         assertEquals(expected, actual);
     }
 
     @Test
     void should_display_products_with_pay_option() {
-        Product coffee = new Product(1, new Price(1, "CHF"), "Coffee");
+        Product coffee = new Product(1, new Price(1, "CHF"), "Coffee", "B");
         Order order = new Order();
         order.addProduct(coffee);
         var actual = displayHelper.displayMenu(Map.of(1, coffee), order);

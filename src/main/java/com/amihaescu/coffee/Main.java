@@ -19,10 +19,11 @@ public class Main {
     private static final ExtrasMapper extrasMapper = new ExtrasMapperImpl();
     private static final FileLoader fileLoader = new FileLoader(extrasMapper, productMapper);
     private static final DisplayHelper displayHelper = new DisplayHelper();
+    private static final Map<Integer, Product> products = fileLoader.loadProducts();
+    private static final Map<Integer, Extra> extras = fileLoader.loadExtras();
 
     public static void main(String[] args) {
-        final Map<Integer, Product> products = fileLoader.loadProducts();
-        final Map<Integer, Extra> extras = fileLoader.loadExtras();
+
         Scanner scanner = new Scanner(System.in);
         int option;
         Order order = new Order();
@@ -30,6 +31,7 @@ public class Main {
             System.out.println(order.toString(false));
             System.out.print(displayHelper.displayMenu(products, order));
             option = scanner.nextInt();
+            if (option == -1) break;
             if (order.containsItems() && option == 0) {
                 System.out.println(order.toString(true));
                 order = new Order();
@@ -38,25 +40,47 @@ public class Main {
                 System.out.println("Invalid option");
                 continue;
             }
-            if (displayHelper.isEligibleForExtra(extras, option)) {
-                System.out.println(products.get(option));
-                System.out.print("Extras?[Y/N]");
-                var extra = scanner.next().equals("Y");
-                if (extra) {
-                    System.out.print(displayHelper.displayExtras(extras));
-                    var extraOption = scanner.nextInt();
-                    while (!extras.containsKey(extraOption)) {
-                        System.out.println("No such option, please try again");
-                        extraOption = scanner.nextInt();
-                    }
-                    order.addProduct(products.get(option));
-                    order.addProduct(extras.get(extraOption));
-                    continue;
-                }
-                order.addProduct(products.get(option));
-                continue;
+            var extraOption = processExtraOption(scanner, option);
+            if (extraOption != -1) {
+                order.addProduct(extras.get(extraOption));
             }
             order.addProduct(products.get(option));
-        } while (option != -1);
+            if (order.isEligibleForFreeExtra()) {
+                displayHelper.displayExtras(extras);
+                var freeExtraOption = processFreeExtraOption(scanner);
+                if (freeExtraOption != -1) {
+                    order.addFreeExtra(extras.get(freeExtraOption));
+                }
+            }
+        } while (true);
+    }
+
+    private static Integer processExtraOption(Scanner scanner, int option) {
+        int extraOption = -1;
+        if (displayHelper.isEligibleForExtra(Main.extras, option)) {
+            System.out.println(Main.products.get(option));
+            System.out.print("Extras?[Y/N]");
+            var extra = "Y".equalsIgnoreCase(scanner.next());
+            if (extra) {
+                System.out.print(displayHelper.displayExtras(Main.extras));
+                extraOption = scanner.nextInt();
+                while (!Main.extras.containsKey(extraOption)) {
+                    System.out.println("No such option, please try again");
+                    extraOption = scanner.nextInt();
+                }
+            }
+        }
+        return extraOption;
+    }
+
+    private static Integer processFreeExtraOption(Scanner scanner) {
+        System.out.println("Your order is eligible for a free extra");
+        System.out.print(displayHelper.displayExtras(Main.extras));
+        int extraOption = scanner.nextInt();
+        while (!Main.extras.containsKey(extraOption)) {
+            System.out.println("No such option, please try again");
+            extraOption = scanner.nextInt();
+        }
+        return extraOption;
     }
 }

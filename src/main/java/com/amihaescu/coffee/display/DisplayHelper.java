@@ -32,8 +32,6 @@ public class DisplayHelper {
         } else {
             return String.format("%s\n%s\n%s", MENU_TITLE, productsString, CHOOSE_ITEM);
         }
-
-
     }
 
     public boolean isEligibleForExtra(Map<Integer, Extra> extras, int option) {

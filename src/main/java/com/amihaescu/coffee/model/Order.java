@@ -9,6 +9,9 @@ public class Order {
     private static final String CURRENT_ORDER = "Current order";
     private final Map<Product, Integer> products;
     private float total;
+    private boolean containsBeverage = false;
+    private boolean containsSnack = false;
+    private boolean freeExtraCollected = false;
 
     public Order() {
         products = new HashMap<>();
@@ -17,6 +20,8 @@ public class Order {
     public void addProduct(Product product) {
         products.merge(product, 1, Integer::sum);
         total += product.getPrice().getAmount();
+        if ("B".equalsIgnoreCase(product.getType()) && !containsBeverage) containsBeverage = true;
+        if ("S".equalsIgnoreCase(product.getType()) && !containsSnack) containsSnack = true;
     }
 
     public String toString(boolean isFinal) {
@@ -41,6 +46,17 @@ public class Order {
 
     public boolean containsItems() {
         return !products.isEmpty();
+    }
+
+    public boolean isEligibleForFreeExtra() {
+        return containsSnack && containsBeverage && !freeExtraCollected;
+    }
+
+    public void addFreeExtra(Extra extra){
+        if (isEligibleForFreeExtra() && !freeExtraCollected) {
+            products.merge(extra.toFree(), 1, Integer::sum);
+            freeExtraCollected = true;
+        }
     }
 
 

@@ -34,4 +34,26 @@ class OrderTest {
         var order = new Order();
         assertFalse(order.containsItems());
     }
+
+    @Test
+    void order_should_be_eligible_for_free_extra() {
+        var order = new Order();
+        order.addProduct(new Product(1, new Price(1, "CHF"), "beverage", "B"));
+        order.addProduct(new Product(1, new Price(1, "CHF"), "snack", "S"));
+        assertTrue(order.isEligibleForFreeExtra());
+    }
+
+    @Test
+    void order_should_not_be_eligible_for_free_extra() {
+        var order = new Order();
+        assertFalse(order.isEligibleForFreeExtra());
+
+        order = new Order();
+        order.addProduct(new Product(1, new Price(1, "CHF"), "beverage", "B"));
+        assertFalse(order.isEligibleForFreeExtra());
+
+        order = new Order();
+        order.addProduct(new Product(1, new Price(1, "CHF"), "snack", "S"));
+        assertFalse(order.isEligibleForFreeExtra());
+    }
 }

@@ -52,6 +52,10 @@ public class Order {
         return containsSnack && containsBeverage && !freeExtraCollected;
     }
 
+    public float getTotal() {
+        return total;
+    }
+
     public void addFreeExtra(Extra extra){
         if (isEligibleForFreeExtra() && !freeExtraCollected) {
             products.merge(extra.toFree(), 1, Integer::sum);

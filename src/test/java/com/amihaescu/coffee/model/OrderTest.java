@@ -2,6 +2,8 @@ package com.amihaescu.coffee.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
@@ -55,5 +57,15 @@ class OrderTest {
         order = new Order();
         order.addProduct(new Product(1, new Price(1, "CHF"), "snack", "S"));
         assertFalse(order.isEligibleForFreeExtra());
+    }
+
+    @Test
+    void should_be_able_to_add_free_extra() {
+        var foamExtra = new Extra(1, List.of(1,2), new Price(1, "CHF"), "Foam");
+        var order = new Order();
+        order.addProduct(new Product(1, new Price(1, "CHF"), "beverage", "B"));
+        order.addProduct(new Product(1, new Price(1, "CHF"), "snack", "S"));
+        order.addFreeExtra(foamExtra);
+        assertEquals(2, order.getTotal());
     }
 }

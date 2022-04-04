@@ -15,7 +15,6 @@ import java.util.Scanner;
 
 public class Main {
 
-
     private static final ProductMapper productMapper = new ProductMapperImpl();
     private static final ExtrasMapper extrasMapper = new ExtrasMapperImpl();
     private static final FileLoader fileLoader = new FileLoader(extrasMapper, productMapper);
@@ -28,11 +27,11 @@ public class Main {
         int option;
         Order order = new Order();
         do {
-            order.display(false);
-            displayHelper.displayMenu(products, order);
+            System.out.println(order.toString(false));
+            System.out.print(displayHelper.displayMenu(products, order));
             option = scanner.nextInt();
-            if (order.containsItems() && option == 6) {
-                order.display(true);
+            if (order.containsItems() && option == 0) {
+                System.out.println(order.toString(true));
                 order = new Order();
                 continue;
             } else if (!products.containsKey(option)) {
@@ -44,8 +43,12 @@ public class Main {
                 System.out.print("Extras?[Y/N]");
                 var extra = scanner.next().equals("Y");
                 if (extra) {
-                    displayHelper.displayExtras(extras);
-                    var extraOption = displayHelper.processExtra(extras, scanner);
+                    System.out.print(displayHelper.displayExtras(extras));
+                    var extraOption = scanner.nextInt();
+                    while (!extras.containsKey(extraOption)) {
+                        System.out.println("No such option, please try again");
+                        extraOption = scanner.nextInt();
+                    }
                     order.addProduct(products.get(option));
                     order.addProduct(extras.get(extraOption));
                     continue;

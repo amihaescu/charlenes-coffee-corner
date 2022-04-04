@@ -1,11 +1,9 @@
-package com.amihaescu.swissre.files;
+package com.amihaescu.coffee.files;
 
-import com.amihaescu.swissre.mappers.ExtrasMapper;
-import com.amihaescu.swissre.mappers.ExtrasMapperImpl;
-import com.amihaescu.swissre.mappers.ProductMapper;
-import com.amihaescu.swissre.mappers.ProductMapperImpl;
-import com.amihaescu.swissre.model.Extra;
-import com.amihaescu.swissre.model.Product;
+import com.amihaescu.coffee.mappers.ExtrasMapper;
+import com.amihaescu.coffee.mappers.ProductMapper;
+import com.amihaescu.coffee.model.Extra;
+import com.amihaescu.coffee.model.Product;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

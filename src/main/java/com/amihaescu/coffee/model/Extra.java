@@ -1,4 +1,4 @@
-package com.amihaescu.swissre.model;
+package com.amihaescu.coffee.model;
 
 import java.util.ArrayList;
 import java.util.List;

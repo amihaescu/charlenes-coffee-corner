@@ -1,4 +1,4 @@
-package com.amihaescu.swissre.mappers;
+package com.amihaescu.coffee.mappers;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.amihaescu.swissre.model;
+package com.amihaescu.coffee.model;
 
 import org.junit.jupiter.api.Test;
 

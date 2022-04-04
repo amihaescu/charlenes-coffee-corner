@@ -1,4 +1,4 @@
-package com.amihaescu.swissre.model;
+package com.amihaescu.coffee.model;
 
 public class Product {
 

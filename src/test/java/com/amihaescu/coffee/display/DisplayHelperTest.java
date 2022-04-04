@@ -1,15 +1,13 @@
-package com.amihaescu.swissre.display;
+package com.amihaescu.coffee.display;
 
-import com.amihaescu.swissre.model.Extra;
-import com.amihaescu.swissre.model.Order;
-import com.amihaescu.swissre.model.Price;
-import com.amihaescu.swissre.model.Product;
+import com.amihaescu.coffee.model.Extra;
+import com.amihaescu.coffee.model.Order;
+import com.amihaescu.coffee.model.Price;
+import com.amihaescu.coffee.model.Product;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 

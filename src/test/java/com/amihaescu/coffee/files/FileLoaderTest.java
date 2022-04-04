@@ -1,7 +1,7 @@
-package com.amihaescu.swissre.files;
+package com.amihaescu.coffee.files;
 
-import com.amihaescu.swissre.model.Extra;
-import com.amihaescu.swissre.model.Product;
+import com.amihaescu.coffee.model.Extra;
+import com.amihaescu.coffee.model.Product;
 import org.junit.jupiter.api.Test;
 
 import java.util.stream.Collectors;

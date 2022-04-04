@@ -1,7 +1,7 @@
-package com.amihaescu.swissre.mappers;
+package com.amihaescu.coffee.mappers;
 
-import com.amihaescu.swissre.model.Extra;
-import com.amihaescu.swissre.model.Price;
+import com.amihaescu.coffee.model.Extra;
+import com.amihaescu.coffee.model.Price;
 
 import java.util.stream.Stream;
 

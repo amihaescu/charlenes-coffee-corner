@@ -1,12 +1,10 @@
-package com.amihaescu.swissre.display;
+package com.amihaescu.coffee.display;
 
-import com.amihaescu.swissre.model.Extra;
-import com.amihaescu.swissre.model.Order;
-import com.amihaescu.swissre.model.Product;
+import com.amihaescu.coffee.model.Extra;
+import com.amihaescu.coffee.model.Order;
+import com.amihaescu.coffee.model.Product;
 
-import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class DisplayHelper {

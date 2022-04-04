@@ -1,7 +1,7 @@
-package com.amihaescu.swissre.mappers;
+package com.amihaescu.coffee.mappers;
 
-import com.amihaescu.swissre.model.Price;
-import com.amihaescu.swissre.model.Product;
+import com.amihaescu.coffee.model.Price;
+import com.amihaescu.coffee.model.Product;
 
 public class ProductMapperImpl implements ProductMapper {
 

@@ -1,7 +1,7 @@
-package com.amihaescu.swissre.files;
+package com.amihaescu.coffee.files;
 
-import com.amihaescu.swissre.mappers.ExtrasMapperImpl;
-import com.amihaescu.swissre.mappers.ProductMapperImpl;
+import com.amihaescu.coffee.mappers.ExtrasMapperImpl;
+import com.amihaescu.coffee.mappers.ProductMapperImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
